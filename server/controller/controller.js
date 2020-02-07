@@ -31,7 +31,7 @@ module.exports = {
   deleteTask: (req, res) => {
     const { id } = req.params
     let index = list.findIndex(elm => elm.id === +id)
-    list.splice(index, 1)
+    if (index !== -1) list.splice(index, 1)
     res.status(200).send(list)
   }
 }

@@ -1,1 +1,4 @@
-module.exports = '/api/list'
+module.exports = {
+  URL: '/api/list',
+  PORT: 4040
+}
