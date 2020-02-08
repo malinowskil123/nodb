@@ -1,0 +1,30 @@
+.List-Item {
+  width: 20vw;
+  height: 35vh;
+  color: #ffffff;
+  background-color: #b2a2c1;
+  opacity: 0.85;
+  margin-bottom: 3vh;
+}
+
+.list-item-header {
+  font-size: 1.5rem;
+}
+
+.list-item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2vw;
+  font-size: 1.2rem;
+  overflow: scroll;
+}
+
+.list-item-content h3 {
+  margin-left: 1vw;
+  margin-bottom: 3vh;
+}
+
+.list-item-button {
+  background: #333333;
+}

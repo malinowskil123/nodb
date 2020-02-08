@@ -1,26 +1,82 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import Header from './Components/Header'
+import Content from './Components/Content'
+import axios from 'axios'
+import URL from './resource'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class List extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      list: []
+    }
+  }
+
+  componentDidMount() {
+    axios
+      .get(URL)
+      .then(res => {
+        this.setState({
+          list: res.data
+        })
+      })
+      .catch(err => console.log(`get request: ${err}`))
+  }
+
+  addNewTask = task => {
+    axios
+      .post(URL, task)
+      .then(res => {
+        this.setState({
+          list: res.data
+        })
+      })
+      .catch(err => console.log(`get post: ${err}`))
+  }
+
+  editTask = (id, task) => {
+    axios
+      .put(`${URL}/${id}`, task)
+      .then()
+      .then(res => {
+        this.setState({
+          list: res.data
+        })
+      })
+      .catch(err => console.log(`get put: ${err}`))
+  }
+
+  deleteTask = id => {
+    let bool = window.confirm(
+      'Are You Sure You want to Delete This Task\nPress Ok To Delete'
+    )
+    if (bool) {
+      axios
+        .delete(`${URL}/${id}`)
+        .then(res => {
+          this.setState({
+            list: res.data
+          })
+        })
+        .catch(err => console.log(`get delete: ${err}`))
+    }
+  }
+
+  render() {
+    const { list } = this.state
+    return (
+      <div className='App'>
+        <Header />
+        <div className='img-wrapper'>
+          <Content
+            list={list}
+            addNewTaskFn={this.addNewTask}
+            editTaskFn={this.editTask}
+            deleteTaskFn={this.deleteTask}
+          />
+        </div>
+      </div>
+    )
+  }
 }
-
-export default App;
