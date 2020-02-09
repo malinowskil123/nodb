@@ -59,13 +59,15 @@ export default class ListItem extends Component {
         ) : (
           <>
             <Input
+              type='text'
               value={editTask}
-              placeHolder={'Edit Task'}
+              placeHolder='Edit Task'
               onchange={this.updateTask}
             />
             <Input
+              type='Date'
               value={editDueDate}
-              placeHolder={'Edit Due Date'}
+              placeHolder='Edit Due Date'
               onchange={this.updateDueDate}
             />
             <button

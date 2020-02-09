@@ -8,7 +8,7 @@ body {
 
 .img-wrapper {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   overflow: hidden;
   background-image: url('./media/desktop.jpg');
   background-size: cover;

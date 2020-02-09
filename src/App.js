@@ -32,7 +32,7 @@ export default class List extends Component {
           list: res.data
         })
       })
-      .catch(err => console.log(`get post: ${err}`))
+      .catch(err => console.log(`post request: ${err}`))
   }
 
   editTask = (id, task) => {
@@ -44,7 +44,7 @@ export default class List extends Component {
           list: res.data
         })
       })
-      .catch(err => console.log(`get put: ${err}`))
+      .catch(err => console.log(`put request: ${err}`))
   }
 
   deleteTask = id => {
@@ -59,8 +59,20 @@ export default class List extends Component {
             list: res.data
           })
         })
-        .catch(err => console.log(`get delete: ${err}`))
+        .catch(err => console.log(`delete request: ${err}`))
     }
+  }
+
+  searchTask = searchText => {
+    axios
+      .get(URL)
+      .then(res => {
+        let filterdArr = res.data.filter(elm => elm.text.includes(searchText))
+        this.setState({
+          list: filterdArr
+        })
+      })
+      .catch(err => console.log(`get request: ${err}`))
   }
 
   render() {
@@ -74,6 +86,7 @@ export default class List extends Component {
             addNewTaskFn={this.addNewTask}
             editTaskFn={this.editTask}
             deleteTaskFn={this.deleteTask}
+            searchTaskFn={this.searchTask}
           />
         </div>
       </div>

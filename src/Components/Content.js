@@ -9,7 +9,8 @@ export default class Content extends Component {
     super(props)
     this.state = {
       userText: '',
-      userDueDate: ''
+      userDueDate: '',
+      searchText: ''
     }
   }
 
@@ -23,6 +24,14 @@ export default class Content extends Component {
     this.setState({
       userDueDate: val
     })
+  }
+
+  handleSearchTextChange = val => {
+    const { searchTaskFn } = this.props
+    this.setState({
+      searchText: val
+    })
+    if (val === '') searchTaskFn('')
   }
 
   addTask = () => {
@@ -44,8 +53,8 @@ export default class Content extends Component {
   }
 
   render() {
-    const { userText, userDueDate } = this.state
-    const { list, deleteTaskFn, editTaskFn } = this.props
+    const { userText, userDueDate, searchText } = this.state
+    const { list, deleteTaskFn, editTaskFn, searchTaskFn } = this.props
     const listArr = list.map(elm => (
       <ListItem
         key={elm.id}
@@ -54,27 +63,43 @@ export default class Content extends Component {
         deleteTaskFn={deleteTaskFn}
       />
     ))
+    // console.log(searchText)
     return (
       <div className='Content'>
         <div className='input-section'>
           <Input
+            type='text'
             value={userText}
             placeHolder={'Enter Task'}
-            handleTextChangeFn={this.handleTextChange}
             onchange={this.handleTextChange}
           />
           <Input
+            type='date'
             value={userDueDate}
-            placeHolder={'Enter Due Date'}
-            handleDueDateChangeFn={this.handleDueDateChange}
+            placeHolder='Enter Due Date'
             onchange={this.handleDueDateChange}
           />
           <Button
-            actionName={'Submit'}
+            actionName='Submit'
             onClickFn={this.addTask}
             input1={userText}
             input2={userDueDate}
           />
+        </div>
+        <div className='input-section'>
+          <Input
+            type='text'
+            value={searchText}
+            placeHolder='Search Task List'
+            onchange={this.handleSearchTextChange}
+          />
+          <button
+            onClick={() => {
+              searchTaskFn(searchText)
+            }}
+          >
+            Search
+          </button>
         </div>
         <div className='content-section'>{listArr}</div>
       </div>
