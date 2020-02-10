@@ -9,6 +9,7 @@ app.use(cors())
 
 //endpoints-----------
 app.get(resources.URL, ctrl.getTaskList)
+app.get(`${resources.URL}/taskSearch`, ctrl.searchTask)
 app.post(resources.URL, ctrl.addTask)
 app.put(`${resources.URL}/:id`, ctrl.updateTask)
 app.delete(`${resources.URL}/:id`, ctrl.deleteTask)

@@ -65,14 +65,13 @@ export default class List extends Component {
 
   searchTask = searchText => {
     axios
-      .get(URL)
+      .get(`${URL}/taskSearch?text=${searchText}`)
       .then(res => {
-        let filterdArr = res.data.filter(elm => elm.text.includes(searchText))
         this.setState({
-          list: filterdArr
+          list: res.data
         })
       })
-      .catch(err => console.log(`get request: ${err}`))
+      .catch(err => console.log(`get search by text request: ${err}`))
   }
 
   render() {

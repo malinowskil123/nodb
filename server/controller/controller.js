@@ -33,5 +33,10 @@ module.exports = {
     let index = list.findIndex(elm => elm.id === +id)
     if (index !== -1) list.splice(index, 1)
     res.status(200).send(list)
+  },
+  searchTask: (req, res) => {
+    const { text } = req.query
+    let filterdArr = list.filter(elm => elm.text.includes(text))
+    res.status(200).send(filterdArr)
   }
 }
