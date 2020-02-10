@@ -10,6 +10,11 @@
   opacity: 0.89;
 }
 
+.List-Item:hover {
+  background-color: #8b6ba8;
+  opacity: 0.89;
+}
+
 .list-item-header {
   font-size: 1.5rem;
 }
