@@ -63,7 +63,6 @@ export default class Content extends Component {
         deleteTaskFn={deleteTaskFn}
       />
     ))
-    // console.log(searchText)
     return (
       <div className='Content'>
         <div className='input-section'>
