@@ -65,26 +65,33 @@ export default class Content extends Component {
     ))
     return (
       <div className='Content'>
-        <div className='input-section'>
-          <Input
-            type='text'
-            value={userText}
-            placeHolder={'Enter Task'}
-            onchange={this.handleTextChange}
-          />
-          <Input
-            type='date'
-            value={userDueDate}
-            placeHolder='Enter Due Date'
-            onchange={this.handleDueDateChange}
-          />
-          <Button
-            actionName='Submit'
-            onClickFn={this.addTask}
-            input1={userText}
-            input2={userDueDate}
-          />
-        </div>
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+            if (e.target.key === 13) this.addTask()
+          }}
+        >
+          <div className='input-section'>
+            <Input
+              type='text'
+              value={userText}
+              placeHolder={'Enter Task'}
+              onchange={this.handleTextChange}
+            />
+            <Input
+              type='date'
+              value={userDueDate}
+              placeHolder='Enter Due Date'
+              onchange={this.handleDueDateChange}
+            />
+            <Button
+              actionName='Submit'
+              onClickFn={this.addTask}
+              input1={userText}
+              input2={userDueDate}
+            />
+          </div>
+        </form>
         <div className='input-section'>
           <Input
             type='text'
