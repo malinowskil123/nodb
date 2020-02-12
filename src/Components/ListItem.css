@@ -24,13 +24,13 @@
   flex-direction: column;
   align-items: flex-start;
   margin-top: 2vw;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   overflow: scroll;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px) {
   .list-item-content {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   .list-item-header {
     font-size: 1.2rem;
