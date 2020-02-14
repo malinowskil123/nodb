@@ -38,7 +38,6 @@ export default class List extends Component {
   editTask = (id, task) => {
     axios
       .put(`${URL}/${id}`, task)
-      .then()
       .then(res => {
         this.setState({
           list: res.data
